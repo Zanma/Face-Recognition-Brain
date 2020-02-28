@@ -1,0 +1,11 @@
+nav{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+#nav-text{
+    border-style: ridge;
+    border-width: 1px;
+    border-color: white;
+}
