@@ -18,22 +18,22 @@ class Signin extends React.Component {
         this.setState({signInPassword: event.target.value})
     }
 
-    onSubmitSignin = () => {
+    onSubmitSignin = (event) => { 
+        event.preventDefault(); 
         fetch('http://localhost:3000/signin', {
-            method: "POST",
+            method: 'post',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({
                 email: this.state.signInEmail,
                 password: this.state.signInPassword
             })
         })
-        .then(response => response.json())
+        .then(data => data.json())
         .then(data => {
           if(data === 'success'){
             this.props.onRouteChange('home');
           }
-        })
-
+        });
     }
 
     render() {
@@ -70,7 +70,8 @@ class Signin extends React.Component {
                             onClick={this.onSubmitSignin}
                             className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                             type="submit" 
-                            value="Sign in"/>
+                            value="Sign in"
+                        />
                         </div>
                         <div className="lh-copy mt3">
                             <p className="mb0" >Don't have an account ?</p>

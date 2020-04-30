@@ -34,9 +34,30 @@ class App extends Component {
       input : '',
       imageUrl : '',
       box: {},
-      route: '',
-      isSignedIn: false
+      route: 'signin',
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        password: '',
+        entries: 0,
+        joined: ''
+      }
     }
+  }
+
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        entries: data.entries,
+        joined: data.joined
+      }
+    })
   }
 
   onInputChange = ( event ) => {
@@ -98,7 +119,7 @@ class App extends Component {
         : (
           this.state.route === 'signin'
           ? <Signin onRouteChange={this.onRouteChange}/>
-          : <Signup onRouteChange={this.onRouteChange}/>
+          : <Signup loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
         )
                 
         }
